@@ -81,7 +81,7 @@ class AppConstants {
     'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
   static const geminiEndpointVision =
     'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent';
-  static const geminiApiKey = 'AIzaSyD9yxm0J34Tcx-k3_wRDrDfzGdKh7TX3hU';
+  static const geminiApiKey = 'API-KEY';
 
   static const List<String> categories = [
     'Food & Ingredients', 'Transport', 'Inventory', 'Labour',
