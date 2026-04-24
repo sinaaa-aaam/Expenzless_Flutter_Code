@@ -15,7 +15,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey:            'AIzaSyD9yxm0J34Tcx-k3_wRDrDfzGdKh7TX3hU',
+    apiKey:            'API-KEY',
     appId:             '1:897005091865:android:b79390bf172030c329be88',
     messagingSenderId: '897005091865',
     projectId:         'expenzeless',
@@ -25,7 +25,7 @@ class DefaultFirebaseOptions {
   // TODO: Replace with your Web app values from Firebase Console
   // Firebase Console → Project Settings → Your apps → Web app
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey:            'AIzaSyD9yxm0J34Tcx-k3_wRDrDfzGdKh7TX3hU',
+    apiKey:            'API-KEY',
     appId:             '1:897005091865:android:b79390bf172030c329be88',
     messagingSenderId: '897005091865',
     projectId:         'expenzeless',
