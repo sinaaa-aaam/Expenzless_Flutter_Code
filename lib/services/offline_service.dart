@@ -4,8 +4,6 @@
 
 import 'dart:convert';
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:workmanager/workmanager.dart';
@@ -49,24 +47,41 @@ class OfflineService {
   static int queueCount() => Hive.box(_kBoxName).length;
 
   static Future<int> syncQueued() async {
-    final box = Hive.box(_kBoxName);
-    final db  = FirebaseFirestore.instance;
-    final uid = FirebaseAuth.instance.currentUser?.uid;
-    if (uid == null || box.isEmpty) return 0;
+  final box = Hive.box(_kBoxName);
+  if (box.isEmpty) return 0;
 
-    int synced = 0;
-    for (final key in List.from(box.keys)) {
-      try {
-        final raw  = box.get(key) as String;
-        final data = jsonDecode(raw) as Map<String, dynamic>;
-        _convertDates(data);
-        await db.collection('expenses').doc(data['id'] as String).set(data);
+  final user = FirebaseAuth.instance.currentUser;
+  if (user == null) return 0;
+  final token = await user.getIdToken() ?? '';
+
+  int synced = 0;
+  for (final key in List.from(box.keys)) {
+    try {
+      final raw  = box.get(key) as String;
+      final data = jsonDecode(raw) as Map<String, dynamic>;
+
+      final res = await http.post(
+        Uri.parse('http://10.0.2.2:3000/api/expenses'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode({
+          'amount':       data['amount'],
+          'category':     data['category'],
+          'description':  data['description'],
+          'expense_date': data['date'].toString().substring(0, 10),
+        }),
+      );
+
+      if (res.statusCode == 201) {
         await box.delete(key);
         synced++;
-      } catch (_) {}
-    }
-    return synced;
+      }
+    } catch (_) {}
   }
+  return synced;
+}
 
   static void _convertDates(Map<String, dynamic> data) {
     for (final key in ['date', 'createdAt', 'updatedAt']) {
