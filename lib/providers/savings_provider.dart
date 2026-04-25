@@ -1,10 +1,10 @@
 // lib/providers/savings_provider.dart
 import 'package:flutter/foundation.dart';
 import '../models/expense_model.dart';
-import '../services/firebase_service.dart';
+import '../services/api_service.dart';
 
 class SavingsProvider extends ChangeNotifier {
-  final _service = FirebaseService();
+  final _service = ApiService();
   bool _loading  = false;
   bool get loading => _loading;
 
