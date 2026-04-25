@@ -1,7 +1,7 @@
 // lib/providers/expense_provider.dart
 import 'package:flutter/foundation.dart';
 import '../models/expense_model.dart';
-import '../services/firebase_service.dart';
+import '../services/api_service.dart';
 import '../services/camera_service.dart';
 import '../services/location_service.dart';
 
