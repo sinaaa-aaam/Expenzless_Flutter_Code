@@ -1,10 +1,10 @@
 // lib/providers/budget_provider.dart
 import 'package:flutter/foundation.dart';
 import '../models/expense_model.dart';
-import '../services/firebase_service.dart';
+import '../services/api_service.dart';
 
 class BudgetProvider extends ChangeNotifier {
-  final _service = FirebaseService();
+  final _service = ApiService();
 
   Stream<List<BudgetModel>> get budgetsStream => _service.readBudgets();
 
