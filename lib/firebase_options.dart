@@ -8,7 +8,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.windows:
-        return web; // reuse web config for Windows desktop testing
+        return web; 
       default:
         return web;
     }
