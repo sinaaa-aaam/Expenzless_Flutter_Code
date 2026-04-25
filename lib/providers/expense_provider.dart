@@ -8,7 +8,7 @@ import '../services/location_service.dart';
 enum LoadState { idle, loading, success, error }
 
 class ExpenseProvider extends ChangeNotifier {
-  final _service = FirebaseService();
+  final _service = ApiService();
   LoadState _state = LoadState.idle;
   String?   _error;
 
