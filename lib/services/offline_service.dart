@@ -7,6 +7,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:workmanager/workmanager.dart';
+import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
 
 const _kBoxName  = 'offline_expense_queue';
 const _kSyncTask = 'syncOfflineExpenses';
